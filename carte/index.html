@@ -1,1 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ma première couche GeoJSON</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <h1>PROTOTYPE CARTE INTERACTIVE</h1>
+    <p> CARTE LEAFLET</p>
+
+<div id="map"></div>
+<!-- ============================= -->
+<!-- ============================= -->
+<!-- EN-TÊTE DU PROTOTYPE -->
+<!-- ============================= -->
+
+<header class="entete-prototype">
+
+    <h1> GUIDE D'UTILISATION </h1>
+
+    <button
+        id="btn-guide"
+        class="btn-guide"
+        type="button">
+       Comment utiliser la carte  ❓ 
+    </button>
+
+</header>
+
+
+<!-- ============================= -->
+<!-- CONTENU PRINCIPAL -->
+<!-- ============================= -->
+
+<main class="conteneur-principal">
+
+    <!-- ========================= -->
+    <!-- ZONE DE LA CARTE -->
+    <!-- ========================= -->
+
+    <section class="zone-carte">
+
+        <div id="map"></div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- GUIDE D'UTILISATION -->
+    <!-- ========================= -->
+
+    <aside
+        id="guide-utilisation"
+        class="guide-utilisation guide-cache">
+
+        <!-- Bouton fermer -->
+
+        <button
+            id="fermer-guide"
+            class="fermer-guide"
+            type="button"
+            aria-label="Fermer le guide">
+
+            ✕
+
+        </button>
+
+
+        <!-- ===================== -->
+        <!-- CONTENU DU GUIDE -->
+        <!-- ===================== -->
+
+        <div class="guide-contenu">
+
+            <div class="guide-header">
+
+                <h2>
+                    🗺️ Guide d'utilisation de la carte
+                </h2>
+
+            </div>
+
+
+            <p class="guide-introduction">
+
+                Cette carte interactive permet de visualiser, explorer
+                et analyser différentes informations relatives à une
+                exploitation agricole.
+
+                Elle constitue un prototype de système d'aide à la
+                décision destiné à faciliter la compréhension et la
+                gestion des données agricoles et spatiales.
+
+            </p>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 1 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape">
+
+                <h3>1️⃣ Explorer la carte</h3>
+
+                <p>
+                    Vous pouvez vous déplacer sur la carte en maintenant
+                    le clic de la souris et en faisant glisser la carte.
+                </p>
+
+                <p>
+                    Utilisez les boutons
+                    <strong>+</strong> et <strong>−</strong>
+                    pour effectuer un zoom avant ou un zoom arrière.
+                </p>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 2 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape">
+
+                <h3>2️⃣ Identifier les éléments présents</h3>
+
+                <p>
+                    La carte peut contenir plusieurs types d'objets
+                    géographiques, notamment :
+                </p>
+
+                <ul>
+
+                    <li>🌾 Parcelles agricoles</li>
+
+                    <li>🌳 Arbres et zones végétalisées</li>
+
+                    <li>🏢 Bâtiments et infrastructures</li>
+
+                    <li>💧 Points d'eau et forages</li>
+
+                    <li>🛣️ Routes et pistes</li>
+
+                    <li>⚠️ Zones d'érosion</li>
+
+                    <li>🌱 Zones de production spécifiques</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 3 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape">
+
+                <h3>3️⃣ Cliquer sur une parcelle</h3>
+
+                <p>
+                    Pour obtenir les informations relatives à une
+                    parcelle, cliquez directement sur sa zone colorée
+                    ou sur son icône.
+                </p>
+
+                <p>
+                    Une fiche interactive s'ouvrira automatiquement
+                    avec les informations disponibles sur cette parcelle.
+                </p>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 4 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape">
+
+                <h3>4️⃣ Consulter les informations agronomiques</h3>
+
+                <p>
+                    La fiche d'une parcelle peut contenir différentes
+                    catégories d'informations permettant de mieux
+                    comprendre son état et son potentiel agricole.
+                </p>
+
+                <ul>
+
+                    <li>Nom et identification de la parcelle</li>
+
+                    <li>Superficie</li>
+
+                    <li>Localisation géographique</li>
+
+                    <li>Type et caractéristiques du sol</li>
+
+                    <li>Disponibilité et gestion de l'eau</li>
+
+                    <li>Présence d'adventices</li>
+
+                    <li>Présence de ravageurs</li>
+
+                    <li>Risques de maladies</li>
+
+                    <li>Informations issues de l'analyse par drone</li>
+
+                    <li>Indicateurs de performance agricole</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 5 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape">
+
+                <h3>5️⃣ Analyser le potentiel de la parcelle</h3>
+
+                <p>
+                    Le prototype peut présenter une première analyse
+                    du potentiel de la parcelle en fonction des données
+                    disponibles.
+                </p>
+
+                <p>
+                    Cette analyse peut prendre en compte plusieurs
+                    facteurs tels que :
+                </p>
+
+                <ul>
+
+                    <li>La qualité et la fertilité du sol</li>
+
+                    <li>La disponibilité en eau</li>
+
+                    <li>Le relief et la pente</li>
+
+                    <li>Les risques d'érosion</li>
+
+                    <li>Les caractéristiques de la végétation</li>
+
+                    <li>Le potentiel de production agricole</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 6 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape">
+
+                <h3>6️⃣ Choisir un système de production</h3>
+
+                <p>
+                    Après avoir consulté les informations de la parcelle,
+                    vous pouvez sélectionner un système de production
+                    agricole afin de réaliser une simulation.
+                </p>
+
+                <p>
+                    Le prototype propose actuellement plusieurs systèmes :
+                </p>
+
+                <ul>
+
+                    <li>🌱 Agriculture intensive</li>
+
+                    <li>🌿 Agroécologie</li>
+
+                    <li>🌳 Agroforesterie</li>
+
+                    <li>🌾 Polyculture et association de cultures</li>
+
+                    <li>🌸 Agriculture associée aux plantes fleuries</li>
+
+                </ul>
+
+                <p>
+                    Dans une version plus avancée du système, plusieurs
+                    autres modèles de production pourront être intégrés
+                    en fonction des objectifs et des préférences du
+                    producteur.
+                </p>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 7 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape">
+
+                <h3>7️⃣ Lancer l'analyse</h3>
+
+                <p>
+                    Après avoir sélectionné un système de production,
+                    cliquez sur le bouton
+                    <strong>« Analyser ce système »</strong>.
+                </p>
+
+                <p>
+                    Le système affiche alors une estimation simulée
+                    de la compatibilité entre les caractéristiques de
+                    la parcelle et le système de production sélectionné.
+                </p>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 8 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape">
+
+                <h3>8️⃣ Générer un plan de campagne</h3>
+
+                <p>
+                    Lorsque le système de production a été analysé,
+                    vous pouvez générer un plan de campagne agricole.
+                </p>
+
+                <p>
+                    Ce plan permet de simuler les principales étapes
+                    de la production agricole :
+                </p>
+
+                <ol>
+
+                    <li>Préparation de la parcelle</li>
+
+                    <li>Choix des semences ou plants</li>
+
+                    <li>Implantation de la culture</li>
+
+                    <li>Fertilisation</li>
+
+                    <li>Association éventuelle des cultures</li>
+
+                    <li>Protection phytosanitaire</li>
+
+                    <li>Entretien des cultures</li>
+
+                    <li>Rotation culturale</li>
+
+                    <li>Planification de la récolte</li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 9 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape">
+
+                <h3>9️⃣ Comprendre l'objectif du prototype</h3>
+
+                <p>
+                    L'objectif principal de cette carte ne se limite pas
+                    à afficher des parcelles sur une carte.
+                </p>
+
+                <p>
+                    Elle vise à démontrer comment un système numérique
+                    peut progressivement regrouper plusieurs types
+                    de données :
+                </p>
+
+                <ul>
+
+                    <li>🗺️ Données géographiques</li>
+
+                    <li>🌱 Données agronomiques</li>
+
+                    <li>🌍 Données environnementales</li>
+
+                    <li>💧 Données hydriques</li>
+
+                    <li>🛰️ Données de télédétection</li>
+
+                    <li>🚁 Données issues des drones</li>
+
+                    <li>📊 Données historiques de production</li>
+
+                </ul>
+
+                <p>
+                    Ces informations pourront ensuite être analysées
+                    afin d'accompagner la prise de décision agricole.
+                </p>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- ETAPE 10 -->
+            <!-- ===================== -->
+
+            <div class="guide-etape guide-important">
+
+                <h3>🔮 Vision future du système</h3>
+
+                <p>
+                    Dans une version plus avancée, le système pourra
+                    évoluer vers une véritable plateforme intelligente
+                    d'aide à la décision.
+                </p>
+
+                <p>
+                    L'utilisateur pourrait cartographier son exploitation,
+                    renseigner ou importer ses données, puis obtenir :
+                </p>
+
+                <ul>
+
+                    <li>Un diagnostic de l'exploitation</li>
+
+                    <li>Une analyse des parcelles</li>
+
+                    <li>Des alertes sur les risques</li>
+
+                    <li>Des recommandations techniques</li>
+
+                    <li>Des propositions de systèmes de production</li>
+
+                    <li>Un plan de campagne personnalisé</li>
+
+                    <li>Une organisation spatiale des productions</li>
+
+                    <li>Un suivi de l'évolution des parcelles</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- AVERTISSEMENT -->
+            <!-- ===================== -->
+
+            <div class="guide-avertissement">
+
+                <h3>⚠️ Important</h3>
+
+                <p>
+                    Les informations actuellement affichées dans ce
+                    prototype sont utilisées à des fins de démonstration
+                    et de simulation.
+
+                    Elles ne constituent pas encore des recommandations
+                    agronomiques réelles.
+                </p>
+
+                <p>
+                    Dans une version professionnelle, les recommandations
+                    devront être basées sur des données réelles de terrain,
+                    des analyses de laboratoire, des données météorologiques,
+                    des observations agronomiques et des modèles
+                    scientifiques validés.
+                </p>
+
+            </div>
+
+
+            <!-- ===================== -->
+            <!-- PIED DU GUIDE -->
+            <!-- ===================== -->
+
+            <div class="guide-footer">
+
+                <p>
+
+                    🌱 <strong>Objectif :</strong>
+
+                    Transformer les données agricoles et géographiques
+                    en informations utiles pour faciliter la planification,
+                    le suivi et la prise de décision.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+<script src="script.js"></script>
+
+
+
+
+</html>
